@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9233340D1D45F25C00733CF8 /* B.png in Resources */ = {isa = PBXBuildFile; fileRef = 9233340C1D45F25C00733CF8 /* B.png */; };
+		9296E87C1D45BA0800C93ECD /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 9296E87B1D45BA0800C93ECD /* arrow.png */; };
+		9296E87F1D45BA2E00C93ECD /* GeoPointCompass.m in Sources */ = {isa = PBXBuildFile; fileRef = 9296E87E1D45BA2E00C93ECD /* GeoPointCompass.m */; };
 		929A29AF1D4203B9003E185D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 929A29AE1D4203B9003E185D /* main.m */; };
 		929A29B21D4203B9003E185D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 929A29B11D4203B9003E185D /* AppDelegate.m */; };
 		929A29B51D4203B9003E185D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 929A29B41D4203B9003E185D /* ViewController.m */; };
@@ -19,6 +22,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9233340C1D45F25C00733CF8 /* B.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = B.png; sourceTree = "<group>"; };
+		9296E87B1D45BA0800C93ECD /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
+		9296E87D1D45BA2E00C93ECD /* GeoPointCompass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeoPointCompass.h; sourceTree = "<group>"; };
+		9296E87E1D45BA2E00C93ECD /* GeoPointCompass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeoPointCompass.m; sourceTree = "<group>"; };
 		929A29AA1D4203B9003E185D /* Camera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Camera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		929A29AE1D4203B9003E185D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		929A29B01D4203B9003E185D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -70,11 +77,15 @@
 				929A29B11D4203B9003E185D /* AppDelegate.m */,
 				929A29B31D4203B9003E185D /* ViewController.h */,
 				929A29B41D4203B9003E185D /* ViewController.m */,
+				9296E87D1D45BA2E00C93ECD /* GeoPointCompass.h */,
+				9296E87E1D45BA2E00C93ECD /* GeoPointCompass.m */,
 				929A29C41D4203CC003E185D /* PhotoView.h */,
 				929A29C51D4203CC003E185D /* PhotoView.m */,
 				929A29C61D4203CC003E185D /* PhotoViewController.h */,
 				929A29C71D4203CC003E185D /* PhotoViewController.m */,
 				929A29CA1D421737003E185D /* A.png */,
+				9233340C1D45F25C00733CF8 /* B.png */,
+				9296E87B1D45BA0800C93ECD /* arrow.png */,
 				929A29B61D4203B9003E185D /* Main.storyboard */,
 				929A29B91D4203B9003E185D /* Assets.xcassets */,
 				929A29BB1D4203B9003E185D /* LaunchScreen.storyboard */,
@@ -152,9 +163,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9233340D1D45F25C00733CF8 /* B.png in Resources */,
 				929A29BD1D4203B9003E185D /* LaunchScreen.storyboard in Resources */,
 				929A29CB1D421737003E185D /* A.png in Resources */,
 				929A29BA1D4203B9003E185D /* Assets.xcassets in Resources */,
+				9296E87C1D45BA0800C93ECD /* arrow.png in Resources */,
 				929A29B81D4203B9003E185D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -167,6 +180,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				929A29B51D4203B9003E185D /* ViewController.m in Sources */,
+				9296E87F1D45BA2E00C93ECD /* GeoPointCompass.m in Sources */,
 				929A29B21D4203B9003E185D /* AppDelegate.m in Sources */,
 				929A29AF1D4203B9003E185D /* main.m in Sources */,
 				929A29C81D4203CC003E185D /* PhotoView.m in Sources */,
@@ -321,6 +335,7 @@
 				929A29C31D4203B9003E185D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
