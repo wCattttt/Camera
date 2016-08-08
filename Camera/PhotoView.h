@@ -12,4 +12,7 @@
 
 - (instancetype)initWithFrame:(CGRect)frame withPositionDevice:(BOOL)isBack;
 
+- (void)startRunning;
+
+- (void)stopRunning;
 @end

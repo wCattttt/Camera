@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Camera/PhotoViewController.m"
-            timestampString = "491903691.637063"
+            timestampString = "492341688.674144"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "191"
-            endingLineNumber = "191"
+            startingLineNumber = "201"
+            endingLineNumber = "201"
             landmarkName = "-useGyroPush"
             landmarkType = "7">
          </BreakpointContent>

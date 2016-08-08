@@ -30,6 +30,8 @@ static const CGFloat CRMotionViewRotationFactor = 5.0f;
     
     GeoPointCompass *geoPointCompass;
     
+    PhotoView *photoView;
+    
     
     UILabel *label1;
     UILabel *label2;
@@ -63,10 +65,18 @@ static const CGFloat CRMotionViewRotationFactor = 5.0f;
     
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [photoView startRunning];
+}
 
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    [photoView stopRunning];
+}
 
 - (void)_createSession{
-    PhotoView *photoView = [[PhotoView alloc] initWithFrame:[UIScreen mainScreen].bounds withPositionDevice:YES];
+    photoView = [[PhotoView alloc] initWithFrame:[UIScreen mainScreen].bounds withPositionDevice:YES];
     
     CGRect frame;
     frame.size = CGSizeMake(100, 150);
@@ -167,7 +177,7 @@ static const CGFloat CRMotionViewRotationFactor = 5.0f;
     }
 }
 
-
+/*
 - (void)useGyroPush{
     if (!_motionManager) {
         _motionManager = [[CMMotionManager alloc] init];
@@ -208,7 +218,7 @@ static const CGFloat CRMotionViewRotationFactor = 5.0f;
     
 //    [_motionManager star];
 }
-
+*/
 
 
 

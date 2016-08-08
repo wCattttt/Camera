@@ -13,7 +13,7 @@
 @property (nonatomic, retain) AVCaptureSession *session;
 @property (nonatomic, retain) AVCaptureDeviceInput *input;
 @property (nonatomic, retain) AVCaptureDevice *device;
-@property (nonatomic, retain) AVCaptureStillImageOutput *imageOutput;
+@property (nonatomic, retain) AVCapturePhotoOutput *imageOutput;
 @property (nonatomic, retain) AVCaptureVideoPreviewLayer *preview;
 
 @end
@@ -55,9 +55,10 @@
         [self.session addInput:self.input];
     }
     
-    self.imageOutput = [AVCaptureStillImageOutput new];
-    NSDictionary *outputSettings = @{AVVideoCodecKey:AVVideoCodecJPEG};
-    [self.imageOutput setOutputSettings:outputSettings];
+    self.imageOutput = [[AVCapturePhotoOutput alloc] init];
+    NSDictionary *setDic = @{AVVideoCodecKey:AVVideoCodecJPEG};
+    AVCapturePhotoSettings *outputSettings = [AVCapturePhotoSettings photoSettingsWithFormat:setDic];
+    [self.imageOutput setPhotoSettingsForSceneMonitoring:outputSettings];
     [self.session addOutput:self.imageOutput];
     self.preview = [[AVCaptureVideoPreviewLayer alloc] initWithSession:self.session];
     [self.preview setVideoGravity:AVLayerVideoGravityResizeAspectFill];
@@ -65,6 +66,14 @@
     [self.layer addSublayer:self.preview];
     [self.session startRunning];
     
+}
+
+- (void)startRunning{
+    [_session startRunning];
+}
+
+- (void)stopRunning{
+    [_session stopRunning];
 }
 
 @end
