@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 #import <CoreMotion/CoreMotion.h>
+#import "NavViewController.h"
+#import "ParabolaViewController.h"
 
 @interface ViewController ()
 
@@ -21,6 +23,14 @@
     
 }
 
+- (IBAction)nav:(id)sender {
+    NavViewController *navVC = [[NavViewController alloc] init];
+    [self presentViewController:navVC animated:YES completion:nil];
+}
+- (IBAction)parabola:(id)sender {
+    ParabolaViewController *parabolaVC = [[ParabolaViewController alloc] init];
+    [self presentViewController:parabolaVC animated:YES completion:nil];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

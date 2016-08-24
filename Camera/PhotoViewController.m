@@ -25,6 +25,7 @@ static const CGFloat CRMotionViewRotationFactor = 5.0f;
 @interface PhotoViewController ()
 {
     __weak IBOutlet UILabel *_msgLabel;
+    __weak IBOutlet UIButton *backBt;
     UIButton *_trackerBt;
     CMMotionManager *_motionManager;
     
@@ -50,9 +51,16 @@ static const CGFloat CRMotionViewRotationFactor = 5.0f;
 
 @implementation PhotoViewController
 
+- (IBAction)back:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    backBt.layer.masksToBounds = YES;
+    backBt.layer.cornerRadius = 8;
     
     _minimumXOffset = -100;
     _maximumXOffset = KScreenWidth;
@@ -77,6 +85,8 @@ static const CGFloat CRMotionViewRotationFactor = 5.0f;
 
 - (void)_createSession{
     photoView = [[PhotoView alloc] initWithFrame:[UIScreen mainScreen].bounds withPositionDevice:YES];
+    
+    [photoView addSubview:backBt];
     
     CGRect frame;
     frame.size = CGSizeMake(100, 150);

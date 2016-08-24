@@ -12,6 +12,7 @@
 		923BD03D1D50A48F00E79044 /* AM83_015_color_01.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 923BD0391D50A48F00E79044 /* AM83_015_color_01.JPG */; };
 		923BD03E1D50A48F00E79044 /* AM83_015_relf_01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 923BD03A1D50A48F00E79044 /* AM83_015_relf_01.jpg */; };
 		923BD03F1D50A48F00E79044 /* file.dae in Resources */ = {isa = PBXBuildFile; fileRef = 923BD03B1D50A48F00E79044 /* file.dae */; };
+		9258C61B1D6BEBB700441265 /* ParabolaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9258C61A1D6BEBB700441265 /* ParabolaViewController.m */; };
 		927852501D508BF8008572F1 /* Atoms.m in Sources */ = {isa = PBXBuildFile; fileRef = 9278524F1D508BF8008572F1 /* Atoms.m */; };
 		927852521D509A8B008572F1 /* EthanolScene.dae in Resources */ = {isa = PBXBuildFile; fileRef = 927852511D509A8B008572F1 /* EthanolScene.dae */; };
 		927852551D509B30008572F1 /* NavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 927852541D509B30008572F1 /* NavViewController.m */; };
@@ -38,6 +39,8 @@
 		923BD0391D50A48F00E79044 /* AM83_015_color_01.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = AM83_015_color_01.JPG; sourceTree = "<group>"; };
 		923BD03A1D50A48F00E79044 /* AM83_015_relf_01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = AM83_015_relf_01.jpg; sourceTree = "<group>"; };
 		923BD03B1D50A48F00E79044 /* file.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = file.dae; sourceTree = "<group>"; };
+		9258C6191D6BEBB700441265 /* ParabolaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParabolaViewController.h; sourceTree = "<group>"; };
+		9258C61A1D6BEBB700441265 /* ParabolaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParabolaViewController.m; sourceTree = "<group>"; };
 		9278524E1D508BF8008572F1 /* Atoms.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Atoms.h; sourceTree = "<group>"; };
 		9278524F1D508BF8008572F1 /* Atoms.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Atoms.m; sourceTree = "<group>"; };
 		927852511D509A8B008572F1 /* EthanolScene.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = EthanolScene.dae; sourceTree = "<group>"; };
@@ -131,6 +134,8 @@
 				929A29C71D4203CC003E185D /* PhotoViewController.m */,
 				927852531D509B30008572F1 /* NavViewController.h */,
 				927852541D509B30008572F1 /* NavViewController.m */,
+				9258C6191D6BEBB700441265 /* ParabolaViewController.h */,
+				9258C61A1D6BEBB700441265 /* ParabolaViewController.m */,
 				9278524E1D508BF8008572F1 /* Atoms.h */,
 				9278524F1D508BF8008572F1 /* Atoms.m */,
 				929A29CA1D421737003E185D /* A.png */,
@@ -242,6 +247,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				929A29B51D4203B9003E185D /* ViewController.m in Sources */,
+				9258C61B1D6BEBB700441265 /* ParabolaViewController.m in Sources */,
 				9296E87F1D45BA2E00C93ECD /* GeoPointCompass.m in Sources */,
 				927852551D509B30008572F1 /* NavViewController.m in Sources */,
 				929A29B21D4203B9003E185D /* AppDelegate.m in Sources */,
