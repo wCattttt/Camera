@@ -11,11 +11,14 @@
 #import <SceneKit/SceneKit.h>
 #import <ModelIO/ModelIO.h>
 #import <CoreMotion/CoreMotion.h>
+#import <AVFoundation/AVFoundation.h>
 
 #define KScreeenWidth [UIScreen mainScreen].bounds.size.width
 #define KScreeenHeight [UIScreen mainScreen].bounds.size.height
 
-@interface ParabolaViewController ()
+#define KAtomsNodeZ 3
+
+@interface ParabolaViewController ()<SCNPhysicsContactDelegate>
 {
     PhotoView *photoView;
     
@@ -113,6 +116,7 @@
 //    daeNode = daeScene.rootNode.childNodes.firstObject;
     
     scene = [SCNScene scene];
+    scene.physicsWorld.contactDelegate = self;
     
     // 全向光 它有方向。其光照方向与它跟物体的位置关系相关。
     SCNNode *omniLightNode = [[SCNNode alloc] init];
@@ -190,8 +194,8 @@
 
 - (void)setupFloor {
     SCNMaterial *floorMaterial = [[SCNMaterial alloc] init];
-    floorMaterial.diffuse.contents = [UIColor colorWithRed:0.4 green:0.4 blue:0.5 alpha:1];
-    
+//    floorMaterial.diffuse.contents = [UIColor colorWithRed:0.4 green:0.4 blue:0.5 alpha:1];
+    floorMaterial.diffuse.contents = [UIColor clearColor];
     SCNFloor *floor = [[SCNFloor alloc] init];
     floor.materials = @[floorMaterial];
     floor.reflectivity = 0.1;
@@ -225,30 +229,37 @@
     
     atomsNode.geometry.materials = @[material];
     atomsNode.physicsBody = [SCNPhysicsBody dynamicBody];
-    atomsNode.position = SCNVector3Make(0, 0, 0);
+    atomsNode.physicsBody.usesDefaultMomentOfInertia = YES;
+    atomsNode.physicsBody.categoryBitMask = 1;
+    atomsNode.physicsBody.contactTestBitMask = 1;
+    atomsNode.position = SCNVector3Make(0, 0, KAtomsNodeZ);
     [scene.rootNode addChildNode:atomsNode];
     
     // ++++++++++++
     
     
-    SCNBox *fluorineBox = [SCNBox boxWithWidth:10 height:10 length:10 chamferRadius:1];
-    fluorineBox.firstMaterial.diffuse.contents = [UIColor redColor];
-    fluorineBox.firstMaterial.specular.contents = [UIColor whiteColor];
-    daeNode = [SCNNode nodeWithGeometry:fluorineBox];
-    daeNode.position = SCNVector3Make(0, 0, -20);
-    daeNode.physicsBody = [SCNPhysicsBody staticBody];
+//    SCNBox *fluorineBox = [SCNBox boxWithWidth:10 height:10 length:10 chamferRadius:1];
+//    fluorineBox.firstMaterial.diffuse.contents = [UIColor redColor];
+//    fluorineBox.firstMaterial.specular.contents = [UIColor whiteColor];
+//    daeNode = [SCNNode nodeWithGeometry:fluorineBox];
+////    daeNode.physicsBody = [SCNPhysicsBody staticBody];
+//    daeNode.physicsBody = [SCNPhysicsBody kinematicBody];
+//    daeNode.physicsBody.categoryBitMask = 1;
+//    daeNode.physicsBody.contactTestBitMask = 1;
+//    daeNode.position = SCNVector3Make(0, 0, -20);
     
      
     
-//    SCNScene *daeScene = [SCNScene sceneNamed:@"dae.dae"];
-//    //    SCNNode *daeNode = [daeScene.rootNode childNodeWithName:@"Dae" recursively:YES];
-//    daeNode = daeScene.rootNode.childNodes.firstObject;
-//    daeNode.position = SCNVector3Make(0, 0, -20);
-//    daeNode.physicsBody = [SCNPhysicsBody staticBody];
+    SCNScene *daeScene = [SCNScene sceneNamed:@"dae.dae"];
+    //    SCNNode *daeNode = [daeScene.rootNode childNodeWithName:@"Dae" recursively:YES];
+    daeNode = daeScene.rootNode.childNodes.firstObject;
+    daeNode.position = SCNVector3Make(0, 0, -20);
+    daeNode.physicsBody = [SCNPhysicsBody staticBody];
+    daeNode.physicsBody.categoryBitMask = 1;
+    daeNode.physicsBody.contactTestBitMask = 1;
 
-    
-//    rotationNode = [SCNNode node];
-//    [rotationNode addChildNode:daeNode];
+    rotationNode = [SCNNode node];
+    [rotationNode addChildNode:daeNode];
     
     [scene.rootNode addChildNode:daeNode];
 }
@@ -278,7 +289,34 @@
     
 }
 
-#pragma mark touch begin/move 等协议方法
+#pragma mark touch begin/move/end 等协议方法
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    //    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"rotation"];
+    //    animation.duration = 5;
+    //    animation.toValue = [NSValue valueWithSCNVector4:SCNVector4Make(0, 1, 0, M_PI * 2)];
+    //    animation.repeatCount = FLT_MAX;
+    //    //    [atomsNode addAnimation:animation forKey:@"AtomsNodeAnimation"];
+    //
+    //    //    [rotationNode addAnimation:animation forKey:@"RotationNodeAnimation"];
+    
+    //    [motionManager stopAccelerometerUpdates];
+    
+    scene.physicsWorld.gravity = SCNVector3Make(0, 0, 0);
+    
+    [atomsNode removeFromParentNode];
+    
+    SCNGeometry *geometry = [self fluorineBox];
+    atomsNode = [SCNNode nodeWithGeometry:geometry];
+    SCNMaterial *material = [[SCNMaterial alloc] init];
+    material.specular.contents = [UIColor greenColor];
+    material.diffuse.contents = [UIColor greenColor];
+    
+    atomsNode.geometry.materials = @[material];
+    atomsNode.physicsBody = [SCNPhysicsBody dynamicBody];
+    atomsNode.position = SCNVector3Make(0, 0, KAtomsNodeZ);
+    [scene.rootNode addChildNode:atomsNode];
+    
+}
 
 - (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     NSSet *allTouches = [event allTouches];    //返回与当前接收者有关的所有的触摸对象
@@ -307,38 +345,11 @@
         y = - (y - KScreeenHeight/2);
     }
     
-    atomsNode.position = SCNVector3Make(x/21.4f, y/21.4f, 0);
+    atomsNode.position = SCNVector3Make(x/28.4f, y/28.4f, KAtomsNodeZ);
 
 //    NSLog(@"touch (x, y) is (%f, %f)", x, y);
     
 //    SCNPhysicsBody
-    
-}
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-//    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"rotation"];
-//    animation.duration = 5;
-//    animation.toValue = [NSValue valueWithSCNVector4:SCNVector4Make(0, 1, 0, M_PI * 2)];
-//    animation.repeatCount = FLT_MAX;
-//    //    [atomsNode addAnimation:animation forKey:@"AtomsNodeAnimation"];
-//    
-//    //    [rotationNode addAnimation:animation forKey:@"RotationNodeAnimation"];
-    
-//    [motionManager stopAccelerometerUpdates];
-    
-    scene.physicsWorld.gravity = SCNVector3Make(0, 0, 0);
-
-    [atomsNode removeFromParentNode];
-    
-    SCNGeometry *geometry = [self fluorineBox];
-    atomsNode = [SCNNode nodeWithGeometry:geometry];
-    SCNMaterial *material = [[SCNMaterial alloc] init];
-    material.specular.contents = [UIColor greenColor];
-    material.diffuse.contents = [UIColor greenColor];
-    
-    atomsNode.geometry.materials = @[material];
-    atomsNode.physicsBody = [SCNPhysicsBody dynamicBody];
-    atomsNode.position = SCNVector3Make(0, 0, 0);
-    [scene.rootNode addChildNode:atomsNode];
     
 }
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
@@ -352,16 +363,56 @@
         NSLog(@"%f", accelZ);
     }];
      */
-    
     NSValue *value1 = points.firstObject;
     NSValue *value2 = points.lastObject;
-//    NSLog(@"point1: x:%f, y:%f ===== point2: x:%f, y:%f", [value1 CGPointValue].x, [value1 CGPointValue].y, [value2 CGPointValue].x, [value2 CGPointValue].y);
+
     
     float graY = value2.CGPointValue.y - value1.CGPointValue.y;
     float graX = value2.CGPointValue.x - value1.CGPointValue.x;
-    scene.physicsWorld.gravity = SCNVector3Make(graX/3.4f, -9.8, graY/3.4f);
+    scene.physicsWorld.gravity = SCNVector3Make(graX/4.4f, -9.8, graY/5.4f);
     
+    // 初速度
+//    float autoX = (graX - graX1)*200 / 28.35;
+//    float autoY = (graY - graY1)*200 / 28.35;
+    
+    SCNVector3 vector = SCNVector3Make(graX/19.4f, - graY/19.4f, 0);
+    SCNAction *action = [SCNAction moveBy:vector duration: - graY/100.4f];
+    action.speed = - graY / 10.4f;
+    action.timingMode = SCNActionTimingModeEaseOut;
+    
+    [atomsNode runAction:action];
+    
+//    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"rotation"];
+//    animation.duration = 5;
+//    animation.toValue = [NSValue valueWithSCNVector4:SCNVector4Make(0, 1, 0, M_PI * 2)];
+//    animation.repeatCount = FLT_MAX;
+//    [atomsNode addAnimation:animation forKey:@"AtomsNodeAnimation"];
+//
+//    [rotationNode addAnimation:animation forKey:@"RotationNodeAnimation"];
+
     NSLog(@"%f", scene.physicsWorld.speed);
+}
+
+
+- (void)physicsWorld:(SCNPhysicsWorld *)world didBeginContact:(SCNPhysicsContact *)contact{
+    NSLog(@"didBeginContact");
+    SystemSoundID ID;
+    
+    NSString *urlPath = [[NSBundle mainBundle] pathForResource:@"in" ofType:@"caf"];
+    NSURL *url = [NSURL fileURLWithPath:urlPath];
+    
+    // 创建系统声音，同时返回一个ID
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)(url), &ID);
+    
+    // 根据ID播放自定义系统声音
+    AudioServicesPlaySystemSound(ID);
+//    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+}
+- (void)physicsWorld:(SCNPhysicsWorld *)world didUpdateContact:(SCNPhysicsContact *)contact{
+//    NSLog(@"didUpdateContact");
+}
+- (void)physicsWorld:(SCNPhysicsWorld *)world didEndContact:(SCNPhysicsContact *)contact{
+//    NSLog(@"didEndContact");
 }
 
 

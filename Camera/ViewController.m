@@ -10,6 +10,7 @@
 #import <CoreMotion/CoreMotion.h>
 #import "NavViewController.h"
 #import "ParabolaViewController.h"
+#import "MotionViewController.h"
 
 @interface ViewController ()
 
@@ -30,6 +31,10 @@
 - (IBAction)parabola:(id)sender {
     ParabolaViewController *parabolaVC = [[ParabolaViewController alloc] init];
     [self presentViewController:parabolaVC animated:YES completion:nil];
+}
+- (IBAction)motion:(id)sender {
+    MotionViewController *motionVC = [[MotionViewController alloc] init];
+    [self presentViewController:motionVC animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {
