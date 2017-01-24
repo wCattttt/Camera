@@ -20,7 +20,7 @@
 
 @interface ParabolaViewController ()<SCNPhysicsContactDelegate>
 {
-    PhotoView *photoView;
+//    PhotoView *photoView;
     
     SCNView *sceneView;
     SCNScene *scene;
@@ -42,12 +42,12 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [photoView startRunning];
+//    [photoView startRunning];
     
 }
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
-    [photoView stopRunning];
+//    [photoView stopRunning];
     
     [motionManager stopAccelerometerUpdates];
 }
@@ -84,13 +84,13 @@
 
 
 - (void)createView{
-    photoView = [[PhotoView alloc] initWithFrame:[UIScreen mainScreen].bounds withPositionDevice:YES];
-    [self.view addSubview:photoView];
+//    photoView = [[PhotoView alloc] initWithFrame:[UIScreen mainScreen].bounds withPositionDevice:YES];
+//    [self.view addSubview:photoView];
     
     sceneView = [[SCNView alloc] initWithFrame:self.view.frame];
     sceneView.backgroundColor = [UIColor clearColor];
-    [photoView addSubview:sceneView];
-//    [self.view addSubview:sceneView];
+//    [photoView addSubview:sceneView];
+    [self.view addSubview:sceneView];
     
     CGRect frame;
     frame.size = CGSizeMake(100, 150);

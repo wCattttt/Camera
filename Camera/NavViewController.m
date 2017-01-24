@@ -19,7 +19,7 @@
     SCNScene *scene;
     
     CMMotionManager *_motionManager;
-    PhotoView *photoView;
+//    PhotoView *photoView;
     
     UILabel *label1;
     UILabel *label2;
@@ -36,11 +36,11 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [photoView startRunning];
+//    [photoView startRunning];
 }
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
-    [photoView stopRunning];
+//    [photoView stopRunning];
 }
 
 - (void)viewDidLoad {
@@ -58,12 +58,13 @@
 }
 
 - (void)createView{
-    photoView = [[PhotoView alloc] initWithFrame:[UIScreen mainScreen].bounds withPositionDevice:YES];
-    [self.view addSubview:photoView];
+//    photoView = [[PhotoView alloc] initWithFrame:[UIScreen mainScreen].bounds withPositionDevice:YES];
+//    [self.view addSubview:photoView];
     
     sceneView = [[SCNView alloc] initWithFrame:self.view.frame];
     sceneView.backgroundColor = [UIColor clearColor];
-    [photoView addSubview:sceneView];
+//    [photoView addSubview:sceneView];
+    [self.view addSubview:sceneView];
     
     CGRect frame;
     frame.size = CGSizeMake(100, 150);
@@ -74,7 +75,8 @@
     _trackerBt.hidden = YES;
     _trackerBt.backgroundColor = [UIColor clearColor];
     [_trackerBt setImage:[UIImage imageNamed:@"B"] forState:UIControlStateNormal];
-    [photoView addSubview:_trackerBt];
+//    [photoView addSubview:_trackerBt];
+    [self.view addSubview:_trackerBt];
 }
 
 #pragma mark 创建3d原子

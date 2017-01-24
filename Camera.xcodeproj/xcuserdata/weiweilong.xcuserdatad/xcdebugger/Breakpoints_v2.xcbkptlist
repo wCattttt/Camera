@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Camera/MotionViewController.m"
-            timestampString = "494218798.207079"
+            timestampString = "497160732.400706"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "230"
-            endingLineNumber = "230"
+            startingLineNumber = "232"
+            endingLineNumber = "232"
             landmarkName = "-dealloc"
             landmarkType = "7">
          </BreakpointContent>

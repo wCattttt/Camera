@@ -23,7 +23,7 @@
 
 @interface  MotionViewController()<SCNSceneRendererDelegate>
 {
-    PhotoView *photoView;
+//    PhotoView *photoView;
 }
 
 
@@ -48,12 +48,12 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [photoView startRunning];
+//    [photoView startRunning];
     
 }
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
-    [photoView stopRunning];
+//    [photoView stopRunning];
     
 }
 
@@ -62,8 +62,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    photoView = [[PhotoView alloc] initWithFrame:[UIScreen mainScreen].bounds withPositionDevice:YES];
-    [self.view addSubview:photoView];
+//    photoView = [[PhotoView alloc] initWithFrame:[UIScreen mainScreen].bounds withPositionDevice:YES];
+//    [self.view addSubview:photoView];
     
     [self initScene];
     
@@ -75,7 +75,8 @@
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     button.backgroundColor = [UIColor colorWithRed:40.2f/255 green:180.2f/255 blue:247.2f/255 alpha:1];
     [button addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
-    [photoView addSubview:button];
+//    [photoView addSubview:button];
+    [self.view addSubview:button];
     
     
     [self addPlaneNodeControlWidth:30 Height:30 Scale:1 Position:SCNVector3Make(150, 0, 0) Rotation:SCNVector4Make(0, 1, 0, -(float)M_PI_2) andName:@"icon_praise.png" withTag:MENU_ZAN];
@@ -120,7 +121,8 @@
     [_leftView autoenablesDefaultLighting];
     _leftView.backgroundColor = [UIColor clearColor];
     _leftView.delegate = self;
-    [photoView addSubview:_leftView];
+//    [photoView addSubview:_leftView];
+    [self.view addSubview:_leftView];
     
     self.cameraLeftNode = [SCNNode node];
     SCNCamera *cameraLeft = [SCNCamera camera];

@@ -31,7 +31,7 @@ static const CGFloat CRMotionViewRotationFactor = 5.0f;
     
     GeoPointCompass *geoPointCompass;
     
-    PhotoView *photoView;
+//    PhotoView *photoView;
     
     
     UILabel *label1;
@@ -75,18 +75,18 @@ static const CGFloat CRMotionViewRotationFactor = 5.0f;
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [photoView startRunning];
+//    [photoView startRunning];
 }
 
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
-    [photoView stopRunning];
+//    [photoView stopRunning];
 }
 
 - (void)_createSession{
-    photoView = [[PhotoView alloc] initWithFrame:[UIScreen mainScreen].bounds withPositionDevice:YES];
-    
-    [photoView addSubview:backBt];
+//    photoView = [[PhotoView alloc] initWithFrame:[UIScreen mainScreen].bounds withPositionDevice:YES];
+//    
+//    [photoView addSubview:backBt];
     
     CGRect frame;
     frame.size = CGSizeMake(100, 150);
@@ -98,14 +98,14 @@ static const CGFloat CRMotionViewRotationFactor = 5.0f;
     [_trackerBt setImage:[UIImage imageNamed:@"A"] forState:UIControlStateNormal];
     [_trackerBt setImage:[UIImage imageNamed:@"B"] forState:UIControlStateSelected];
     [_trackerBt addTarget:self action:@selector(clickTracker:) forControlEvents:UIControlEventTouchUpInside];
-    [photoView addSubview:_trackerBt];
-//    [self.view addSubview:_trackerBt];
+//    [photoView addSubview:_trackerBt];
+    [self.view addSubview:_trackerBt];
     _motionRate = _trackerBt.frame.size.width / _trackerBt.frame.size.width * CRMotionViewRotationFactor;
     
     // 下方指示图标
     UIImageView *arrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width - 100)/2, 400, 100, 100)];
     arrowImageView.image = [UIImage imageNamed:@"arrow.png"];
-    [photoView addSubview:arrowImageView];
+//    [photoView addSubview:arrowImageView];
     [self.view addSubview:arrowImageView];
     geoPointCompass = [[GeoPointCompass alloc] init];
     [geoPointCompass setArrowImageView:arrowImageView];
@@ -126,12 +126,12 @@ static const CGFloat CRMotionViewRotationFactor = 5.0f;
     
     sceneView = [[SCNView alloc] initWithFrame:CGRectMake(0, KScreenHeight/2, KScreenWidth, KScreenHeight/2)];
     sceneView.backgroundColor = [UIColor clearColor];
-    [photoView addSubview:sceneView];
-//    [self.view addSubview:sceneView];
+//    [photoView addSubview:sceneView];
+    [self.view addSubview:sceneView];
     
 //    [photoView addSubview:_msgLabel];
     
-    [self.view addSubview:photoView];
+//    [self.view addSubview:photoView];
 }
 
 - (void)clickTracker:(UIButton *)button{
